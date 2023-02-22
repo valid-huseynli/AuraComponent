@@ -1,0 +1,39 @@
+<aura:component controller="RESTRequestController" implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+  <aura:attribute name="records" type="Account[]"/>
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+  <lightning:card title="REST API Record">
+    <div class="slds-p-around_medium">
+      <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+        <thead>
+          <tr class="slds-text-title_caps">
+            <th scope="col">
+              <div class="slds-truncate" title="Name">Name</div>
+            </th>
+            <th scope="col">
+              <div class="slds-truncate" title="Industry">Industry</div>
+            </th>
+            <th scope="col">
+              <div class="slds-truncate" title="Type">Type</div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <aura:iteration items="{!v.records}" var="record">
+            <tr>
+              <td>
+                <lightning:input type="text" value="{!record.Name}" />
+              </td>
+              <td>
+                <lightning:input type="text" value="{!record.Industry}" />
+              </td>
+              <td>
+                <lightning:input type="text" value="{!record.Type}" />
+              </td>
+            </tr>
+          </aura:iteration>
+        </tbody>
+      </table>
+      <lightning:button label="Create Account" variant="brand" onclick="{!c.saveChanges}" />
+    </div>
+  </lightning:card>
+</aura:component>
